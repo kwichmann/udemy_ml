@@ -6,7 +6,8 @@ dataset <- dataset[2:3]
 
 # Decision tree regression model
 library(rpart)
-regressor = rpart(Salary ~ Level, data = dataset)
+regressor = rpart(Salary ~ Level, data = dataset,
+                  control = rpart.control(minsplit = 1))
 
 # Visualising the decision tree regression results (for higher resolution and smoother curve)
 library(ggplot2)
@@ -20,5 +21,5 @@ ggplot() +
   xlab('Level') +
   ylab('Salary')
 
-# SVR prediction
+# Model prediction for applicant
 y_pred <- predict(regressor, data.frame(Level = 6.5))
